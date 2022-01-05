@@ -66,4 +66,10 @@ public class LoansService {
 
         return loansRepository.listLoans(userId);
     }
+
+    public Loans detailLoan(Long id, String token) {
+        Long userId = tokenService.getUserId(token);
+
+        return loansRepository.detailLoan(id, userId);
+    }
 }

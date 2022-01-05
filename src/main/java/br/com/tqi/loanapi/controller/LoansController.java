@@ -6,8 +6,6 @@ import br.com.tqi.loanapi.repository.model.Loans;
 import br.com.tqi.loanapi.service.LoansService;
 import br.com.tqi.loanapi.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,5 +43,13 @@ public class LoansController implements LoansControllerDocs {
         String token = TokenUtils.wrapperToken(request);
 
         return ResponseEntity.ok(loansService.listLoans(token));
+    }
+
+    @Override
+    @GetMapping("/{id}")
+    public Loans detailLoan(@PathVariable Long id, HttpServletRequest request) {
+        String token = TokenUtils.wrapperToken(request);
+
+        return loansService.detailLoan(id, token);
     }
 }

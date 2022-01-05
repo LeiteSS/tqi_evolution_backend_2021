@@ -41,4 +41,14 @@ public interface LoansControllerDocs {
             @ApiResponse(code = 404, message = "Usuário não encontrado") })
     @GetMapping
     public ResponseEntity<List<Loans>> listLoans(HttpServletRequest request);
+
+    @ApiOperation(value = "Detalhar emprestimo", nickname = "detailLoan", notes = "", response = LoanDTO.class, responseContainer = "object", authorizations = {
+            @Authorization(value = "Authorization") }, tags = { "Loans", })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Emprestimo detalhado!", response = LoanDTO.class, responseContainer = "object"),
+            @ApiResponse(code = 400, message = "Dados informados para a requisição estão inconsistentes", response = ErrorDTO.class, responseContainer = "object"),
+            @ApiResponse(code = 401, message = "Usuário sem permissão para acessar o recurso"),
+            @ApiResponse(code = 404, message = "Usuário não encontrados") })
+    @GetMapping("/{id}")
+    public Loans detailLoan(@PathVariable Long id, HttpServletRequest request);
 }
