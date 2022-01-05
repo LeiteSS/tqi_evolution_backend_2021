@@ -1,29 +1,32 @@
 <p align="center">
   <a href="https://www.tqi.com.br">
-    <img src="img/logo-tqi.svg" width="180">
+    <img src="img/logo.png" width="180">
   </a>
 </p>
 
-**Prazo para finalizar:** 10/01/2022.
+*Back-end* desenvolvido para o **TQI Evolution 2022**, onde foi possivel obter mais conhecimentos na Autenticação de usuarios usando o *Json Web Token*.
 
-# Getting Started
-## Features
-- [X] Cadastro de clientes
-- [ ] Login
-- [ ] Solicitação de empréstimos
-- [ ] Acompanhamento das solicitações de emprestimos
-  - Visualizar os empréstimos
-  - Detalhar os empréstimos
+## Funcionalidades
+|        Nome          |    Descrição                                                                                                         |
+|----------------------|----------------------------------------------------------------------------------------------------------------------|
+| Cadastro de Usuario  | Deve ser possivel cadastrar um usuario usando:email, nome, endereço completo, RG, CPF e senha                        | 
+| Login                | O usuario deve conseguir logar usando: email e senha                                                                 |
+| Solicitação de Empréstimos    | O usuario deve conseguir pedir empréstimos fornecendo o valor do empréstimos, data da primeira parcela e quantidade de parcelas |
+| Listar Empréstimos   | Deve ser possivel listar os empréstimos que foram solicitados pelo usuario antes autenticado  |             
+| Detalhar Empréstimos | Deve ser possivel detalhar determinado empréstimo                                                                   |  
 
-## Dependencies
-Spring Web, Spring Security, Validation, Spring Data JDBC, Spring Data JPA, Spring Boot Actuator, Lombok e PostgreSQL Driver.
+## Rotas
+|      Método      |  Rota                           |
+|------------------|---------------------------------|
+| `POST`           | `/api/v1/signUp`                |
+| `POST`           | `/api/v1/signIn`                |
+| `GET`            | `/api/v1/me`                    |
+| `POST`           | `/api/v1/loans`                 |
+| `GET`            | `/api/v1/loans`                 |
+| `GET`            | `/api/v1/loans/{id}`            |
 
-## Usage
-```bash
-gradlew bootRun
-```
 
-## References
+
 
 
 
