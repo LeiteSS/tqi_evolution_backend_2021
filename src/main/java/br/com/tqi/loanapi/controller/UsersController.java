@@ -1,8 +1,10 @@
 package br.com.tqi.loanapi.controller;
 
 import br.com.tqi.loanapi.controller.docs.UsersControllerDocs;
+import br.com.tqi.loanapi.dto.LoginDTO;
 import br.com.tqi.loanapi.dto.ProfileInformationDTO;
-import br.com.tqi.loanapi.services.UsersService;
+import br.com.tqi.loanapi.dto.TokenDTO;
+import br.com.tqi.loanapi.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,5 +30,12 @@ public class UsersController implements UsersControllerDocs {
         ProfileInformationDTO responseBody = service.signUp(profileInformationDTO);
 
         return ResponseEntity.ok(responseBody);
+    }
+
+    @PostMapping("/signIn")
+    public ResponseEntity<TokenDTO> signIn(@RequestBody @Valid LoginDTO loginDTO)
+    {
+
+        return ResponseEntity.ok(service.signIn(loginDTO));
     }
 }

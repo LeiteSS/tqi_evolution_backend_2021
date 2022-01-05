@@ -1,11 +1,17 @@
-package br.com.tqi.loanapi.services;
+package br.com.tqi.loanapi.service;
 
+import br.com.tqi.loanapi.dto.LoginDTO;
 import br.com.tqi.loanapi.dto.ProfileInformationDTO;
+import br.com.tqi.loanapi.dto.TokenDTO;
 import br.com.tqi.loanapi.model.Address;
 import br.com.tqi.loanapi.model.User;
 import br.com.tqi.loanapi.repository.AddressesRepository;
 import br.com.tqi.loanapi.repository.UsersRepository;
+import br.com.tqi.loanapi.security.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +23,12 @@ public class UsersService {
 
     @Autowired
     private AddressesRepository addressesRepository;
+
+    @Autowired
+    private TokenService tokenService;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     public ProfileInformationDTO signUp(ProfileInformationDTO profileInformationDTO) {
         User user = new User();
@@ -46,5 +58,13 @@ public class UsersService {
         addressesRepository.save(address);
 
         return profileInformationDTO;
+    }
+
+    public TokenDTO signIn(LoginDTO loginDTO) {
+        UsernamePasswordAuthenticationToken loginData = loginDTO.convert();
+        Authentication auth = authenticationManager.authenticate(loginData);
+        String token = tokenService.getToken(auth);
+
+        return new TokenDTO(token, "Bearer");
     }
 }
