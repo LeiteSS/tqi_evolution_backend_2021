@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://tqi-evolution-frontend-2022.netlify.app")
 @RequestMapping("/api/v1/users")
 public class UsersController implements UsersControllerDocs {
 

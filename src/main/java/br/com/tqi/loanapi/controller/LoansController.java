@@ -20,7 +20,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://tqi-evolution-frontend-2022.netlify.app")
 @RequestMapping("/api/v1/loans")
 
 public class LoansController implements LoansControllerDocs {
