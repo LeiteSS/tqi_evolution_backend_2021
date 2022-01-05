@@ -2,6 +2,7 @@ package br.com.tqi.loanapi.controller;
 
 import br.com.tqi.loanapi.controller.docs.LoansControllerDocs;
 import br.com.tqi.loanapi.dto.LoanDTO;
+import br.com.tqi.loanapi.repository.model.Loans;
 import br.com.tqi.loanapi.service.LoansService;
 import br.com.tqi.loanapi.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +32,18 @@ public class LoansController implements LoansControllerDocs {
 
     @Override
     @PostMapping
-    @CacheEvict(cacheNames = "Loans", allEntries = true)
     public ResponseEntity<LoanDTO> createLoan(@Valid @RequestBody LoanDTO loanDTO, HttpServletRequest request) throws Exception
     {
         String token = TokenUtils.wrapperToken(request);
 
         return ResponseEntity.ok(loansService.createLoan(loanDTO, token));
+    }
+
+    @Override
+    @GetMapping
+    public ResponseEntity<List<Loans>> listLoans(HttpServletRequest request) {
+        String token = TokenUtils.wrapperToken(request);
+
+        return ResponseEntity.ok(loansService.listLoans(token));
     }
 }

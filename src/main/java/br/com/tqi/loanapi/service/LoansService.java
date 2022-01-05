@@ -8,12 +8,14 @@ import br.com.tqi.loanapi.model.Loan;
 import br.com.tqi.loanapi.model.User;
 import br.com.tqi.loanapi.repository.LoansRepository;
 import br.com.tqi.loanapi.repository.UsersRepository;
+import br.com.tqi.loanapi.repository.model.Loans;
 import br.com.tqi.loanapi.security.TokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
@@ -57,5 +59,11 @@ public class LoansService {
         loansRepository.save(loan);
 
         return loanDTO;
+    }
+
+    public List<Loans> listLoans(String token) {
+        Long userId = tokenService.getUserId(token);
+
+        return loansRepository.listLoans(userId);
     }
 }
