@@ -1,6 +1,7 @@
 package br.com.tqi.loanapi.service;
 
 import br.com.tqi.loanapi.dto.LoginDTO;
+import br.com.tqi.loanapi.dto.ProfileDTO;
 import br.com.tqi.loanapi.dto.ProfileInformationDTO;
 import br.com.tqi.loanapi.dto.TokenDTO;
 import br.com.tqi.loanapi.model.Address;
@@ -66,5 +67,23 @@ public class UsersService {
         String token = tokenService.getToken(auth);
 
         return new TokenDTO(token, "Bearer");
+    }
+
+    public ProfileDTO profileInformation(String token) {
+        ProfileDTO profile = new ProfileDTO();
+
+        Long userId = tokenService.getUserId(token);
+
+        User user = userRepository.getById(userId);
+
+        profile.setName(user.getName());
+        profile.setLastname(user.getLastname());
+        profile.setUsername(user.getUsername());
+        profile.setCpf(user.getCpf());
+        profile.setRg(user.getRg());
+        profile.setEmail(user.getEmail());
+        profile.setIncome(user.getIncome());
+
+        return profile;
     }
 }
