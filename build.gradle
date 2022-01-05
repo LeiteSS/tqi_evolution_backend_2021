@@ -4,20 +4,6 @@ plugins {
 	id 'java'
 }
 
-task fatJar(type: Jar) {
-	manifest {
-		attributes 'Main-Class': 'br.com.tqi.loanapi.LoanApiApplication'
-	}
-	archiveClassifier = "all"
-	from {
-		configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-		configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-	}
-	with jar
-
-	duplicatesStrategy "exclude"
-}
-
 group = 'br.com.tqi'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
