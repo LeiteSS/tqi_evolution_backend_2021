@@ -6,6 +6,7 @@ import br.com.tqi.loanapi.dto.ProfileInformationDTO;
 import br.com.tqi.loanapi.dto.ProfileDTO;
 import br.com.tqi.loanapi.dto.TokenDTO;
 import br.com.tqi.loanapi.service.UsersService;
+import br.com.tqi.loanapi.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,12 +42,7 @@ public class UsersController implements UsersControllerDocs {
     @GetMapping("/me")
     public ResponseEntity<ProfileDTO> me(HttpServletRequest request)
     {
-        String header = request.getHeader("Authorization");
-
-        if (header == null || header.isEmpty() || !header.startsWith("Bearer ")) {
-            return null;
-        }
-        String token = header.substring(7, header.length());
+        String token = TokenUtils.wrapperToken(request);
 
         return ResponseEntity.ok(service.profileInformation(token));
     }
