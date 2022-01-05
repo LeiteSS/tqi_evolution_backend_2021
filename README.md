@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://www.tqi.com.br">
-    <img src="img/logo.png" width="180">
+    <img src="img/logo.png" width="180" >
   </a>
 </p>
 
