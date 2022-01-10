@@ -197,7 +197,7 @@ const api = axios.create({
   baseURL: 'https://tqi-evolution-2022.herokuapp.com'
 })
 ```
-
+P.S.: Também é preciso mudar as URLs dentro da anotação `@CrossOrigin` nas controllers: 'LoansController' e 'UsersController' para http://localhost:3000.
 
 ## Testes
 Os testes podem ser realizados através do link: https://tqi-evolution-2022.herokuapp.com/swagger-ui.html ou após clonado este repositorio através do link: http://localhost:5000/swagger-ui.html
